@@ -1,124 +1,241 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Ad Script Generator</title>
+    <meta charset="UTF-8" />
+    <title>AdScript Studio – AI Ad Script Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Lottie Animation -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(14px);
-            box-shadow: 0 10px 45px rgba(0,0,0,0.25);
+        body {
+            background: radial-gradient(circle at top, #dbeafe 0, #eef2ff 35%, #f9fafb 80%);
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+            color: #0f172a;
         }
 
-        .input-field {
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(8px);
+        .app-card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e5e7eb;
         }
 
-        .neon-btn {
-            background: linear-gradient(45deg, #ff9500, #ff2d55, #7d4dff);
-            transition: 0.25s;
-            border-radius: 12px;
+        .field-box {
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            color: #111827;
         }
 
-        .neon-btn:hover {
-            transform: scale(1.03);
-            filter: brightness(1.2);
+        .field-box:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+            background: #ffffff;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.98rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            transition: 0.2s ease;
+            width: 100%;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.07);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #1d4ed8;
+        }
+
+        .pill {
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            background: #eff6ff;
+            color: #1e40af;
+        }
+
+        .result-card {
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #e5e7eb;
+            padding: 20px 22px;
         }
     </style>
 </head>
 
-<body class="bg-gradient-to-br from-purple-600 via-indigo-700 to-blue-900 text-white min-h-screen">
+<body>
 
-<div class="max-w-4xl mx-auto mt-10 p-10 glass">
+    <!-- Top Navbar -->
+    <header class="w-full border-b border-slate-200 bg-white/80 backdrop-blur">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg">
+                    A
+                </div>
+                <div>
+                    <div class="font-semibold text-slate-900 text-sm sm:text-base">AdStudio</div>
+                    <div class="text-xs text-slate-500 hidden sm:block">AI-powered ad script engine</div>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-3 text-xs text-slate-500">
+                <span class="pill">LLM-Powered</span>
+                <span class="pill">With Video Script Ideas</span>
+                <span class="pill">Hook • Body • CTA</span>
+            </div>
+        </div>
+    </header>
 
-    <!-- Lottie animation header -->
-    <div class="flex justify-center mb-4">
-        <lottie-player
-            src="https://assets2.lottiefiles.com/packages/lf20_9wjm14ni.json"
-            background="transparent"
-            speed="1"
-            style="width: 180px; height: 180px;"
-            loop autoplay>
-        </lottie-player>
-    </div>
+    <!-- Main Section -->
+    <main class="max-w-6xl mx-auto px-4 pt-10 pb-16">
+        <div class="grid md:grid-cols-2 gap-8 items-start">
 
-    <h1 class="text-4xl font-extrabold text-center mb-8">
-        ✨ AI Ad Script Generator
-    </h1>
+            <!-- Left: Hero copy / marketing -->
+            <section class="space-y-6">
+                <span class="badge">Creator Workspace</span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight">
+                    Turn product details into ready-to-shoot <span class="text-blue-600">ad scripts</span>.
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg">
+                    Give us your brand, product, and audience. We’ll generate a well-structured
+                    <strong>Hook → Body → CTA</strong> script with a visual hook tailored for 30-second video ads.
+                </p>
 
-    <!-- FORM (Stable, DO NOT MODIFY STRUCTURE) -->
-    <form method="POST" action="/generate" enctype="application/x-www-form-urlencoded" class="space-y-6">
+                <div class="flex items-center gap-4 text-xs sm:text-sm text-slate-500">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        Live: Gemini-powered
+                    </div>
+                    <div>•</div>
+                    <div>Supports tones: Funny, Serious, Viral, Cinematic, Emotional</div>
+                </div>
 
-        <div>
-            <label class="block mb-2 font-semibold">Brand Name</label>
-            <input name="brand_name" type="text" required
-                   class="w-full p-3 rounded input-field text-white">
+                <div class="hidden md:flex justify-center pt-4">
+                    <lottie-player
+                        src="https://assets7.lottiefiles.com/packages/lf20_jzq2fopu.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 260px; height: 260px;"
+                        loop autoplay>
+                    </lottie-player>
+                </div>
+            </section>
+
+            <!-- Right: App Panel -->
+            <section class="app-card p-6 sm:p-7 space-y-5">
+                <div class="flex items-center justify-between mb-1">
+                    <div>
+                        <h2 class="font-semibold text-slate-900 text-lg">Generate a new script</h2>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Fill the fields below and get a polished ad script in seconds.
+                        </p>
+                    </div>
+                    <div class="text-right text-[0.7rem] text-slate-400">
+                        Mode<br><span class="font-semibold text-slate-600">Ad-Script v1.0</span>
+                    </div>
+                </div>
+
+                <form method="POST" action="/generate" enctype="application/x-www-form-urlencoded" class="space-y-4">
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Brand Name</label>
+                        <input name="brand_name" type="text" class="w-full field-box text-sm" placeholder="Ex: NovaBite, AeroTech, FreshWave" required />
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Product Name</label>
+                        <input name="product_name" type="text" class="w-full field-box text-sm" placeholder="Ex: Spicy Mango Pickle, Noise-cancelling Earbuds" required />
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Product Category</label>
+                            <input name="category" type="text" class="w-full field-box text-sm" placeholder="Electronics, Snacks, Fashion…" required />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Target Audience</label>
+                            <input name="target_audience" type="text" class="w-full field-box text-sm" placeholder="College students, Working professionals…" required />
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Tone</label>
+                            <select name="tone" class="w-full field-box text-sm" required>
+                                <option>Funny</option>
+                                <option>Serious</option>
+                                <option>Viral</option>
+                                <option>Cinematic</option>
+                                <option>Emotional</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Creative Mode</label>
+                            <select name="creative" class="w-full field-box text-sm" required>
+                                <option>High Creativity</option>
+                                <option>Subtle Creativity</option>
+                                <option>Humor Mode</option>
+                                <option>Epic Cinematic</option>
+                                <option>Minimal & Clean</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="primary-btn">
+                            <span>Generate Script</span>
+                            <span>✨</span>
+                        </button>
+                    </div>
+
+                    <p class="text-[0.7rem] text-slate-400 pt-1">
+                        Scripts are AI-generated. Always review before publishing.
+                    </p>
+                </form>
+            </section>
         </div>
 
-        <div>
-            <label class="block mb-2 font-semibold">Product Name</label>
-            <input name="product_name" type="text" required
-                   class="w-full p-3 rounded input-field text-white">
-        </div>
+        <!-- Result Section -->
+        {% if script %}
+        <section class="mt-10 grid lg:grid-cols-[2fr,1fr] gap-6 items-start">
+            <div class="result-card">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-lg font-semibold text-slate-900">Generated Script</h3>
+                    <span class="pill bg-slate-100 text-slate-600">Hook • Body • CTA</span>
+                </div>
+                <pre class="whitespace-pre-wrap text-sm text-slate-700">{{ script }}</pre>
+            </div>
 
-        <div>
-            <label class="block mb-2 font-semibold">Product Category</label>
-            <input name="category" type="text" placeholder="Electronics / Food / Fashion..." required
-                   class="w-full p-3 rounded input-field text-white">
-        </div>
-
-        <div>
-            <label class="block mb-2 font-semibold">Target Audience</label>
-            <input name="target_audience" type="text" required
-                   class="w-full p-3 rounded input-field text-white">
-        </div>
-
-        <div>
-            <label class="block mb-2 font-semibold">Tone</label>
-            <select name="tone" class="w-full p-3 rounded input-field text-white" required>
-                <option>Funny</option>
-                <option>Serious</option>
-                <option>Viral</option>
-                <option>Cinematic</option>
-                <option>Emotional</option>
-            </select>
-        </div>
-
-        <div>
-            <label class="block mb-2 font-semibold">Creative Mode</label>
-            <select name="creative" class="w-full p-3 rounded input-field text-white" required>
-                <option>High Creativity</option>
-                <option>Subtle Creativity</option>
-                <option>Humor Mode</option>
-                <option>Epic Cinematic</option>
-                <option>Minimal & Clean</option>
-            </select>
-        </div>
-
-        <button type="submit" class="w-full neon-btn py-3 text-lg font-bold">
-            Generate Script 🚀
-        </button>
-
-    </form>
-
-    {% if script %}
-    <div class="mt-10 p-6 glass rounded">
-        <h2 class="text-2xl font-bold mb-3">Generated Script</h2>
-        <pre class="whitespace-pre-wrap text-gray-200">{{ script }}</pre>
-
-        <h2 class="text-2xl font-bold mt-6">🎥 Visual Hook</h2>
-        <p class="text-gray-200">{{ visual_hook }}</p>
-    </div>
-    {% endif %}
-</div>
+            <div class="result-card">
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">🎥 Visual Hook</h3>
+                <p class="text-sm text-slate-700">{{ visual_hook }}</p>
+                <div class="mt-4 text-[0.75rem] text-slate-400">
+                    Tip: Use this as your opening shot to stop the scroll in the first 3 seconds.
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </main>
 
 </body>
 </html>
